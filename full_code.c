@@ -1,11 +1,4 @@
-/* project71_single.c
-   Single-file implementation of "Smart Home Energy Consumption Dashboard"
-   - dynamic array via realloc
-   - load/save CSV
-   - append-only log
-   - add/remove/toggle/print report
-*/
-
+//          ---------MEMBER-1----------
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,7 +11,7 @@ typedef struct {
     int status; // 1 = ON, 0 = OFF
 } Appliance;
 
-/* --- Prototypes --- */
+
 Appliance* load_appliances(const char *filename, size_t *count);
 int save_appliances(const char *filename, Appliance *arr, size_t count);
 void log_consumption(const char *logfile, Appliance *arr, size_t count, double tariff);
@@ -29,8 +22,6 @@ void toggle_appliance(Appliance *arr, size_t idx);
 
 double daily_kwh(const Appliance *a);
 void print_report(Appliance *arr, size_t count, double tariff);
-
-/* --- Implementations --- */
 
 Appliance* load_appliances(const char *filename, size_t *count) {
     FILE *f = fopen(filename, "r");
@@ -53,6 +44,11 @@ Appliance* load_appliances(const char *filename, size_t *count) {
     fclose(f);
     return arr;
 }
+
+
+//          ---------MEMBER-2----------
+
+
 
 int save_appliances(const char *filename, Appliance *arr, size_t count) {
     FILE *f = fopen(filename, "w");
@@ -101,6 +97,8 @@ Appliance* remove_appliance(Appliance *arr, size_t *count, size_t idx) {
     return arr;
 }
 
+//          ---------MEMBER-3----------
+
 void toggle_appliance(Appliance *arr, size_t idx) {
     if (!arr) return;
     arr[idx].status = !arr[idx].status;
@@ -129,7 +127,11 @@ void print_report(Appliance *arr, size_t count, double tariff) {
     printf("Monthly Cost: %.2f\n", total * tariff * 30);
 }
 
-/* --- Main (UI) --- */
+
+
+//          ---------MEMBER-4----------
+
+
 int main(void) {
     size_t count = 0;
     double tariff = 0.12; // default currency per kWh
